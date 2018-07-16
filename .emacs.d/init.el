@@ -1,3 +1,4 @@
+;; *******************************************
 ;; init.el --- Emacs configuration
 
 ;; INSTALL PACKAGES
@@ -15,21 +16,24 @@
     (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 (when (not package-archive-contents)
-  (package-refresh-contents))
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (helm smex magit cider ##))))
+ '(package-selected-packages
+   (quote
+    (paredit doom-themes helm smex magit cider company projectile ##))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(defvar myPackages
+(defvar my-packages
   '(better-defaults
     ein
     elpy
@@ -40,7 +44,7 @@
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
       (package-install package)))
-      myPackages)
+      my-packages)
 
 ;; BASIC CUSTOMIZATION
 ;; --------------------------------------
@@ -56,9 +60,8 @@
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
-
-(load-theme 'material t) ;; load material theme
 (elpy-enable)
+
 (setq python-indent-offset 2
       python-shell-interpreter "jupyter"
       python-shell-interpreter-args "console --simple-prompt"
@@ -81,6 +84,13 @@
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-=") 'zoom-frm-in)
 (global-set-key (kbd "C--") 'zoom-frm-out)
+
+;; company
+(global-company-mode)
+
+;; themes
+(load-theme 'doom-peacock t)
+;;(load-theme 'material t) ;; load material theme
 
 ;; display time on status bar
  (setq display-time-day-and-date t
