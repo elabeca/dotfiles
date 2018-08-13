@@ -26,7 +26,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (clojure-mode-extra-font-locking clojure-mode rainbow-blocks rainbow-delimiters paredit doom-themes helm smex magit cider company projectile ##))))
+    (clojure-mode rainbow-blocks rainbow-delimiters paredit doom-themes helm smex magit cider company projectile ##))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
